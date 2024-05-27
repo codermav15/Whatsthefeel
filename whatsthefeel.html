@@ -1,0 +1,141 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emoji Feelings</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('https://vivaldi.com/wp-content/uploads/vivaldi-emojis-hero.jpg'); /* Specified background image */
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            transition: background 0.5s; /* Smooth transition for background change */
+        }
+        .emoji-container {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .emoji {
+            font-size: 50px;
+            margin: 10px;
+            color: black; /* Black color for emoji */
+        }
+        .feeling {
+            font-size: 24px;
+            color: #333;
+            margin-top: 10px;
+        }
+        .input-container {
+            margin-top: 20px;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-left: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        .custom-file-upload {
+            border: 1px solid #ccc;
+            display: inline-block;
+            padding: 6px 12px;
+            cursor: pointer;
+            margin-left: 10px;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 5px;
+        }
+        .custom-file-upload:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="emoji-container">
+        <div class="emoji" id="emoji">😊</div>
+        <div class="feeling">How are you feeling today?</div>
+        <div class="input-container">
+            <input type="text" id="feeling-input" placeholder="Type your feeling...">
+            <button onclick="generateEmoji()">Generate Emoji</button>
+            <button onclick="copyEmoji()">Copy Emoji</button>
+        </div>
+    </div>
+
+    <script>
+        function generateEmoji() {
+            const feelingInput = document.getElementById('feeling-input').value.toLowerCase();
+            const emojiElement = document.getElementById('emoji');
+            let emoji = '😊'; // Default emoji
+
+            switch (feelingInput) {
+                case 'happy':
+                    emoji = '😊';
+                    break;
+                case 'sad':
+                    emoji = '😢';
+                    break;
+                case 'angry':
+                    emoji = '😡';
+                    break;
+                case 'cool':
+                    emoji = '😎';
+                    break;
+                case 'in love':
+                    emoji = '😍';
+                    break;
+                case 'tired':
+                    emoji = '😴';
+                    break;
+                case 'surprised':
+                    emoji = '😲';
+                    break;
+                case 'scared':
+                    emoji = '😨';
+                    break;
+                default:
+                    emoji = '😊'; // Default emoji if feeling is not recognized
+            }
+
+            emojiElement.textContent = emoji;
+        }
+
+        function copyEmoji() {
+            const emojiElement = document.getElementById('emoji');
+            const emojiText = emojiElement.textContent;
+
+            navigator.clipboard.writeText(emojiText).then(() => {
+                alert('Emoji copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy emoji: ', err);
+            });
+        }
+    </script>
+</body>
+</html>
+
+
+
